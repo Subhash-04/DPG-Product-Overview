@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Daily Pay Go — Product Overview</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0f1117;
+  --ink2:#3a3d47;
+  --ink3:#7a7f8c;
+  --surf:#ffffff;
+  --surf2:#f7f8fa;
+  --surf3:#eef0f5;
+  --accent:#12b76a;
+  --accent2:#0e9457;
+  --accent-pale:#e6f9f0;
+  --navy:#0d1b3e;
+  --navy2:#1a2d55;
+  --amber:#f59e0b;
+  --coral:#ef4444;
+  --purple:#7c3aed;
+  --border:#e2e6ee;
+  --r:12px;
+  --r2:8px;
+  --r3:20px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;color:var(--ink);background:var(--surf);line-height:1.6;font-size:15px}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  display:flex;align-items:center;justify-content:space-between;height:60px;
+}
+.nav-logo{font-family:'DM Serif Display',serif;font-size:20px;color:var(--navy);letter-spacing:-.3px}
+.nav-logo span{color:var(--accent)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:13px;color:var(--ink3);text-decoration:none;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--navy)}
+.nav-badge{background:var(--navy);color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;letter-spacing:.5px}
+
+/* ── HERO ── */
+.hero{
+  background:var(--navy);
+  color:#fff;
+  padding:100px 40px 90px;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(18,183,106,.15) 0%,transparent 70%);
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(18,183,106,.15);
+  border:1px solid rgba(18,183,106,.3);
+  border-radius:20px;padding:5px 14px;
+  font-size:12px;font-weight:600;color:var(--accent);
+  letter-spacing:.8px;text-transform:uppercase;margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+.hero h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(40px,5vw,64px);line-height:1.1;
+  color:#fff;margin-bottom:8px;letter-spacing:-.5px;
+}
+.hero h1 em{color:var(--accent);font-style:normal}
+.hero-sub{font-size:18px;color:rgba(255,255,255,.55);font-weight:300;margin-bottom:40px;max-width:520px;line-height:1.6}
+.hero-modules{display:flex;gap:12px;flex-wrap:wrap}
+.module-pill{
+  padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:8px;
+}
+.module-pill.daily{background:rgba(18,183,106,.2);color:#5adb97;border:1px solid rgba(18,183,106,.3)}
+.module-pill.pay{background:rgba(124,58,237,.2);color:#b08cf6;border:1px solid rgba(124,58,237,.25);opacity:.5}
+.module-pill.go{background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid rgba(245,158,11,.25);opacity:.5}
+.module-pill .dot{width:7px;height:7px;border-radius:50%;background:currentColor}
+.module-pill .tag{font-size:10px;font-weight:500;opacity:.6;margin-left:4px}
+.hero-meta{margin-top:48px;display:flex;gap:40px;flex-wrap:wrap}
+.hero-meta-item{border-left:2px solid rgba(18,183,106,.4);padding-left:16px}
+.hero-meta-item label{display:block;font-size:11px;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.7px;margin-bottom:4px}
+.hero-meta-item span{font-size:15px;color:rgba(255,255,255,.85);font-weight:500}
+
+/* ── SECTIONS ── */
+.section{padding:80px 40px;max-width:1100px;margin:0 auto}
+.section-label{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;
+  color:var(--accent2);margin-bottom:12px;
+}
+.section-title{
+  font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,38px);
+  color:var(--navy);line-height:1.2;margin-bottom:16px;letter-spacing:-.3px;
+}
+.section-desc{font-size:16px;color:var(--ink2);max-width:600px;line-height:1.7}
+hr.divider{border:none;border-top:1px solid var(--border);margin:0 40px}
+
+/* ── PROBLEM ── */
+.problem-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:48px}
+.prob-card{
+  background:var(--surf2);border:1px solid var(--border);
+  border-radius:var(--r);padding:28px;
+}
+.prob-card h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.prob-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px}
+.prob-icon.cust{background:#fff0e6;color:#ef6c00}
+.prob-icon.store{background:#ede9fe;color:#7c3aed}
+.prob-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.prob-list li{font-size:14px;color:var(--ink2);padding-left:20px;position:relative}
+.prob-list li::before{content:'·';position:absolute;left:6px;color:var(--ink3);font-size:18px;line-height:1}
+
+/* ── WHO'S ON THE PLATFORM ── */
+.users-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.user-card{border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
+.user-card-header{padding:24px 24px 16px;border-bottom:1px solid var(--border)}
+.user-avatar{
+  width:48px;height:48px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:16px;
+}
+.user-card-header h3{font-size:18px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.user-card-header p{font-size:13px;color:var(--ink3)}
+.user-card-body{padding:20px 24px;background:var(--surf2)}
+.user-card-body h4{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--ink3);margin-bottom:12px}
+.feature-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  background:#fff;border:1px solid var(--border);
+  border-radius:6px;padding:4px 10px;font-size:12px;font-weight:500;color:var(--ink2);
+  margin:3px 3px 3px 0;
+}
+.feature-tag svg{width:12px;height:12px;color:var(--accent);flex-shrink:0}
+
+/* ── AUTH FLOWS ── */
+.auth-section{background:var(--navy);padding:80px 40px}
+.auth-inner{max-width:1100px;margin:0 auto}
+.auth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.auth-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:var(--r);padding:28px}
+.auth-card h3{font-size:15px;font-weight:600;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+.auth-badge{font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:.5px}
+.auth-badge.open{background:rgba(18,183,106,.25);color:#5adb97}
+.auth-badge.restricted{background:rgba(245,158,11,.25);color:#fbbf24}
+.auth-badge.secure{background:rgba(239,68,68,.2);color:#f87171}
+.auth-steps{list-style:none;display:flex;flex-direction:column;gap:0}
+.auth-step{
+  display:flex;gap:14px;padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  align-items:flex-start;
+}
+.auth-step:last-child{border-bottom:none}
+.step-num{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(18,183,106,.2);border:1px solid rgba(18,183,106,.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--accent);flex-shrink:0;margin-top:1px;
+}
+.auth-step span{font-size:13px;color:rgba(255,255,255,.7);line-height:1.5}
+.auth-step strong{color:#fff;font-weight:500}
+
+/* ── FEATURES ── */
+.features-tabs{display:flex;gap:8px;margin-bottom:40px;flex-wrap:wrap}
+.ftab{
+  padding:8px 18px;border-radius:30px;border:1px solid var(--border);
+  font-size:13px;font-weight:500;color:var(--ink3);cursor:pointer;
+  background:var(--surf2);transition:all .2s;
+}
+.ftab.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.feature-panels>div{display:none}
+.feature-panels>div.active{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat-box{
+  background:var(--surf);border:1px solid var(--border);
+  border-radius:var(--r2);padding:20px;transition:border-color .2s,transform .2s;
+}
+.feat-box:hover{border-color:var(--accent);transform:translateY(-2px)}
+.feat-icon{font-size:20px;margin-bottom:10px}
+.feat-box h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.feat-box p{font-size:13px;color:var(--ink3);line-height:1.5}
+
+/* ── FLOW ── */
+.flow-section{background:var(--surf2);padding:80px 40px}
+.flow-inner{max-width:1100px;margin:0 auto}
+.flow-journey{margin-top:48px}
+.flow-actor{margin-bottom:48px}
+.flow-actor-label{
+  display:flex;align-items:center;gap:12px;margin-bottom:20px;
+}
+.flow-actor-dot{width:10px;height:10px;border-radius:50%}
+.flow-actor-label h3{font-size:16px;font-weight:600;color:var(--navy)}
+.flow-steps{display:flex;gap:0;overflow-x:auto;padding-bottom:8px}
+.flow-step{
+  flex:0 0 auto;width:180px;
+  background:var(--surf);border:1px solid var(--border);
+  border-radius:var(--r2);padding:16px;position:relative;
+}
+.flow-step+.flow-step{margin-left:0}
+.flow-step::after{
+  content:'→';position:absolute;right:-16px;top:50%;transform:translateY(-50%);
+  font-size:14px;color:var(--ink3);z-index:1;
+}
+.flow-step:last-child::after{display:none}
+.flow-connector{width:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--ink3);font-size:12px}
+.flow-step-num{font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.flow-step h4{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:4px}
+.flow-step p{font-size:12px;color:var(--ink3);line-height:1.4}
+
+/* ── BUSINESS RULES ── */
+.rules-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px}
+.rule-card{
+  background:var(--surf);border:1px solid var(--border);
+  border-radius:var(--r2);padding:20px;border-left:3px solid var(--accent);
+}
+.rule-id{font-size:10px;font-weight:700;color:var(--accent2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:6px}
+.rule-card h4{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.rule-card p{font-size:13px;color:var(--ink2);line-height:1.5}
+
+/* ── METRICS ── */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.metric-box{
+  text-align:center;padding:28px 16px;
+  background:var(--surf2);border:1px solid var(--border);border-radius:var(--r);
+}
+.metric-val{font-family:'DM Serif Display',serif;font-size:36px;color:var(--navy);line-height:1;margin-bottom:8px}
+.metric-val span{font-size:20px}
+.metric-label{font-size:12px;color:var(--ink3);line-height:1.4}
+
+/* ── SCOPE ── */
+.scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.scope-col{border-radius:var(--r);padding:28px;border:1px solid var(--border)}
+.scope-in{background:var(--accent-pale);border-color:rgba(18,183,106,.2)}
+.scope-out{background:#fef9f0;border-color:rgba(245,158,11,.2)}
+.scope-col h3{font-size:15px;font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.scope-in h3{color:#0e6f47}
+.scope-out h3{color:#92520a}
+.scope-list{list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.scope-list li{
+  font-size:12px;font-weight:500;padding:4px 10px;border-radius:20px;
+}
+.scope-in .scope-list li{background:rgba(18,183,106,.12);color:#0e6f47}
+.scope-out .scope-list li{background:rgba(245,158,11,.12);color:#92520a}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);color:rgba(255,255,255,.5);
+  text-align:center;padding:32px 40px;
+  font-size:12px;letter-spacing:.3px;
+}
+footer strong{color:rgba(255,255,255,.8)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .hero{padding:60px 20px 50px}
+  .section{padding:60px 20px}
+  .problem-grid,.users-grid,.auth-grid,.metrics-grid{grid-template-columns:1fr}
+  .feature-panels>div.active{grid-template-columns:1fr}
+  .scope-grid,.rules-grid{grid-template-columns:1fr}
+  hr.divider{margin:0 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Daily<span>Pay</span>Go</div>
+  <div class="nav-links">
+    <a href="#overview">Overview</a>
+    <a href="#users">Users</a>
+    <a href="#auth">Auth</a>
+    <a href="#features">Features</a>
+    <a href="#flow">Flows</a>
+    <a href="#rules">Rules</a>
+    <a href="#scope">Scope</a>
+  </div>
+  <div class="nav-badge">PRD v1 · Phase 1 MVP</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:1">
+    <div class="hero-eyebrow"><div></div>Product Overview — Client Brief</div>
+    <h1>Daily<em>Pay</em>Go<br/>Super App</h1>
+    <p class="hero-sub">A modular platform connecting customers with neighborhood stores for instant grocery delivery — and more.</p>
+    <div class="hero-modules">
+      <div class="module-pill daily"><div class="dot"></div>Daily<span class="tag">— Phase 1 Active</span></div>
+      <div class="module-pill pay"><div class="dot"></div>Pay<span class="tag">— Future</span></div>
+      <div class="module-pill go"><div class="dot"></div>Go<span class="tag">— Future</span></div>
+    </div>
+    <div class="hero-meta">
+      <div class="hero-meta-item"><label>Launch Target</label><span>Single City MVP</span></div>
+      <div class="hero-meta-item"><label>Platform</label><span>Mobile-first PWA</span></div>
+      <div class="hero-meta-item"><label>Delivery</label><span>Store Self-Delivery</span></div>
+      <div class="hero-meta-item"><label>Payments</label><span>COD + Online</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section class="section" id="overview">
+  <div class="section-label">What We're Building</div>
+  <h2 class="section-title">A hyperlocal grocery marketplace<br/>for your neighborhood</h2>
+  <p class="section-desc">Daily PayGo bridges the gap between local kirana stores and modern customers — giving stores a digital storefront and giving users the convenience of on-demand grocery ordering with instant delivery.</p>
+
+  <div class="problem-grid" style="margin-top:48px">
+    <div class="prob-card">
+      <h3><div class="prob-icon cust">🛒</div>The Customer Problem</h3>
+      <ul class="prob-list">
+        <li>Wasted time traveling to stores for daily needs</li>
+        <li>Uncertain product availability until you arrive</li>
+        <li>Crowded stores — especially tough for elderly users</li>
+        <li>Fragmented ordering via WhatsApp or calls</li>
+        <li>No structured return or refund process</li>
+      </ul>
+    </div>
+    <div class="prob-card">
+      <h3><div class="prob-icon store">🏪</div>The Store Problem</h3>
+      <ul class="prob-list">
+        <li>No digital storefront or online ordering capability</li>
+        <li>Limited reach beyond walk-in customers</li>
+        <li>Losing customers to large e-commerce platforms</li>
+        <li>Manual and fragmented order management</li>
+        <li>No analytics or performance visibility</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;background:var(--navy);border-radius:var(--r);padding:32px 36px;display:flex;gap:32px;align-items:center;flex-wrap:wrap">
+    <div style="flex:1;min-width:260px">
+      <div style="font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.8px;margin-bottom:10px">Our Solution</div>
+      <p style="font-size:18px;color:#fff;font-family:'DM Serif Display',serif;line-height:1.5">Give every neighborhood kirana store a digital presence. Give every customer the power to order from stores they already trust.</p>
+    </div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <div style="text-align:center;padding:16px 24px;background:rgba(255,255,255,.07);border-radius:10px;border:1px solid rgba(255,255,255,.1)">
+        <div style="font-family:'DM Serif Display',serif;font-size:32px;color:var(--accent);line-height:1">~10</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">min delivery radius</div>
+      </div>
+      <div style="text-align:center;padding:16px 24px;background:rgba(255,255,255,.07);border-radius:10px;border:1px solid rgba(255,255,255,.1)">
+        <div style="font-family:'DM Serif Display',serif;font-size:32px;color:var(--accent);line-height:1">3</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">user roles</div>
+      </div>
+      <div style="text-align:center;padding:16px 24px;background:rgba(255,255,255,.07);border-radius:10px;border:1px solid rgba(255,255,255,.1)">
+        <div style="font-family:'DM Serif Display',serif;font-size:32px;color:var(--accent);line-height:1">60s</div>
+        <div style="font-size:12px;color:rgba(255,255,255,.5);margin-top:4px">order acceptance SLA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- WHO'S ON THE PLATFORM -->
+<section class="section" id="users">
+  <div class="section-label">Platform Users</div>
+  <h2 class="section-title">Three distinct roles,<br/>one connected system</h2>
+  <p class="section-desc">Every person on the platform plays a specific role with tailored access and capabilities designed around their daily reality.</p>
+
+  <div class="users-grid">
+    <!-- Customer -->
+    <div class="user-card">
+      <div class="user-card-header">
+        <div class="user-avatar" style="background:#e6f9f0">🧑‍💼</div>
+        <h3>Customer</h3>
+        <p>End-user who discovers stores, places orders and tracks deliveries</p>
+      </div>
+      <div class="user-card-body">
+        <h4>Can do</h4>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Browse nearby stores</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Search products</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Cart & checkout</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>COD or online pay</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Track orders</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Return requests</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Leave reviews</span>
+      </div>
+    </div>
+
+    <!-- Store Agent -->
+    <div class="user-card">
+      <div class="user-card-header">
+        <div class="user-avatar" style="background:#ede9fe">🏪</div>
+        <h3>Store Agent</h3>
+        <p>Kirana store owner or staff who manages catalog and fulfills orders</p>
+      </div>
+      <div class="user-card-body">
+        <h4>Can do</h4>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Manage catalog</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Update inventory</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Bulk CSV import</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Accept/reject orders</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Update order status</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Handle returns</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>View sales analytics</span>
+      </div>
+    </div>
+
+    <!-- Admin -->
+    <div class="user-card">
+      <div class="user-card-header">
+        <div class="user-avatar" style="background:#fef3c7">🛡️</div>
+        <h3>Platform Admin</h3>
+        <p>Internal operator who governs the marketplace and resolves disputes</p>
+      </div>
+      <div class="user-card-body">
+        <h4>Can do</h4>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Onboard stores</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Create store credentials</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Activate/deactivate stores</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Manage refunds</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Resolve disputes</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Commission analytics</span>
+        <span class="feature-tag"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1,6 4,9 11,3"/></svg>Platform monitoring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- AUTH FLOWS -->
+<section class="auth-section" id="auth">
+  <div class="auth-inner">
+    <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:var(--accent);margin-bottom:12px">Authentication Design</div>
+    <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(28px,3vw,38px);color:#fff;line-height:1.2;margin-bottom:16px">How each user gets in</h2>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);max-width:560px;line-height:1.7">Every role has a distinct access path — designed around security, accountability, and operational control.</p>
+
+    <div class="auth-grid">
+
+      <!-- Customer -->
+      <div class="auth-card">
+        <h3>🧑‍💼 Customer Login <span class="auth-badge open">Self-Register</span></h3>
+        <ol class="auth-steps">
+          <li class="auth-step"><div class="step-num">1</div><span>Open the app and tap <strong>Create Account</strong></span></li>
+          <li class="auth-step"><div class="step-num">2</div><span>Enter <strong>name, mobile number</strong> and email</span></li>
+          <li class="auth-step"><div class="step-num">3</div><span>Accept <strong>Terms &amp; Conditions</strong>, Privacy Policy and Consent</span></li>
+          <li class="auth-step"><div class="step-num">4</div><span>Receive and verify a <strong>mobile OTP</strong></span></li>
+          <li class="auth-step"><div class="step-num">5</div><span>Account created — <strong>session persists</strong> automatically</span></li>
+          <li class="auth-step"><div class="step-num">↩</div><span>Returning users: enter mobile → OTP → logged in</span></li>
+        </ol>
+      </div>
+
+      <!-- Store Agent -->
+      <div class="auth-card">
+        <h3>🏪 Store Agent Login <span class="auth-badge restricted">Admin-Issued</span></h3>
+        <ol class="auth-steps">
+          <li class="auth-step"><div class="step-num">1</div><span>Admin onboards the store and <strong>creates credentials</strong> in the system</span></li>
+          <li class="auth-step"><div class="step-num">2</div><span>Admin shares <strong>username &amp; password</strong> with the store owner</span></li>
+          <li class="auth-step"><div class="step-num">3</div><span>Store agent opens the <strong>Store Dashboard</strong> portal</span></li>
+          <li class="auth-step"><div class="step-num">4</div><span>Logs in using admin-provided credentials — <strong>no self-registration</strong></span></li>
+          <li class="auth-step"><div class="step-num">5</div><span>Store profile visible only after <strong>admin approval</strong></span></li>
+          <li class="auth-step"><div class="step-num">⚠</div><span>Stores cannot sign up independently — access is <strong>controlled by Admin</strong></span></li>
+        </ol>
+      </div>
+
+      <!-- Admin -->
+      <div class="auth-card">
+        <h3>🛡️ Platform Admin <span class="auth-badge secure">Internal Only</span></h3>
+        <ol class="auth-steps">
+          <li class="auth-step"><div class="step-num">1</div><span>Admin accesses the <strong>internal management panel</strong></span></li>
+          <li class="auth-step"><div class="step-num">2</div><span>Logs in with <strong>secure admin credentials</strong></span></li>
+          <li class="auth-step"><div class="step-num">3</div><span>Full authority to <strong>create, activate or deactivate</strong> store agents</span></li>
+          <li class="auth-step"><div class="step-num">4</div><span>Can <strong>monitor all orders</strong>, refunds, disputes and commissions</span></li>
+          <li class="auth-step"><div class="step-num">5</div><span>Platform-wide <strong>governance authority</strong> across all roles</span></li>
+          <li class="auth-step"><div class="step-num">🔒</div><span>Access is <strong>strictly internal</strong> — separate from customer and store portals</span></li>
+        </ol>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-label">Feature Set</div>
+  <h2 class="section-title">Everything built for Phase 1</h2>
+  <p class="section-desc">A complete marketplace experience designed for each role — from discovery to delivery.</p>
+
+  <div style="margin-top:40px">
+    <div class="features-tabs">
+      <div class="ftab active" onclick="switchTab('customer',this)">Customer Features</div>
+      <div class="ftab" onclick="switchTab('store',this)">Store Agent Features</div>
+      <div class="ftab" onclick="switchTab('admin',this)">Admin Features</div>
+    </div>
+
+    <div class="feature-panels">
+
+      <div id="tab-customer" class="active">
+        <div class="feat-box"><div class="feat-icon">📍</div><h4>Location Detection</h4><p>Auto-detects the customer's location or allows manual address entry for personalized store listings.</p></div>
+        <div class="feat-box"><div class="feat-icon">🏪</div><h4>Store Discovery</h4><p>Lists nearby stores ranked by rating, reliability, and geo-radius (0–5 km, 5–10 km, 10–15 km bands).</p></div>
+        <div class="feat-box"><div class="feat-icon">🔍</div><h4>Product Search</h4><p>Global search across all nearby stores to quickly find specific products without browsing each store.</p></div>
+        <div class="feat-box"><div class="feat-icon">🛒</div><h4>Cart Management</h4><p>Add, remove, and adjust quantities. Single-store cart enforced — user is prompted to switch if needed.</p></div>
+        <div class="feat-box"><div class="feat-icon">💳</div><h4>COD + Online Pay</h4><p>Choose between Cash on Delivery or online payment methods at checkout, with live price validation.</p></div>
+        <div class="feat-box"><div class="feat-icon">📦</div><h4>Order Tracking</h4><p>Real-time order status updates — from placed to accepted to out for delivery to delivered.</p></div>
+        <div class="feat-box"><div class="feat-icon">⏱️</div><h4>60s Cancellation</h4><p>Cancel any order within 60 seconds of placement while it's still in the pending window.</p></div>
+        <div class="feat-box"><div class="feat-icon">↩️</div><h4>Return &amp; Refunds</h4><p>Submit return requests with reason and optional photo evidence. Track refund status in-app.</p></div>
+        <div class="feat-box"><div class="feat-icon">⭐</div><h4>Reviews</h4><p>Rate stores and review orders after delivery to help maintain marketplace quality standards.</p></div>
+      </div>
+
+      <div id="tab-store">
+        <div class="feat-box"><div class="feat-icon">📋</div><h4>Catalog Management</h4><p>Add, edit, and organize products by category with images, pricing, and stock count.</p></div>
+        <div class="feat-box"><div class="feat-icon">📤</div><h4>CSV Bulk Upload</h4><p>Import entire product catalogs from CSV files to quickly populate the store's digital inventory.</p></div>
+        <div class="feat-box"><div class="feat-icon">📊</div><h4>Inventory Control</h4><p>Manage live stock levels per product — automatically reflects availability to customers in real time.</p></div>
+        <div class="feat-box"><div class="feat-icon">🔔</div><h4>Order Dashboard</h4><p>View incoming orders live. Accept or reject each within the 60-second SLA window.</p></div>
+        <div class="feat-box"><div class="feat-icon">🚚</div><h4>Delivery Management</h4><p>Update order progress step by step — store handles own delivery with status updates pushed to customers.</p></div>
+        <div class="feat-box"><div class="feat-icon">↩️</div><h4>Return Handling</h4><p>View return requests, schedule reverse pickup, and mark returns as completed for refund processing.</p></div>
+        <div class="feat-box"><div class="feat-icon">💰</div><h4>Pricing Control</h4><p>Update product prices anytime. The platform validates the latest price at customer checkout.</p></div>
+        <div class="feat-box"><div class="feat-icon">🏪</div><h4>Store Profile</h4><p>Manage delivery settings, operating hours, store information and delivery radius configuration.</p></div>
+        <div class="feat-box"><div class="feat-icon">📈</div><h4>Basic Analytics</h4><p>View sales summaries, order volume, acceptance rates and revenue to track store performance.</p></div>
+      </div>
+
+      <div id="tab-admin">
+        <div class="feat-box"><div class="feat-icon">🏷️</div><h4>Store Onboarding</h4><p>Register new kirana stores, create their login credentials, and configure their initial profile.</p></div>
+        <div class="feat-box"><div class="feat-icon">✅</div><h4>Store Approval</h4><p>Review and approve or reject store applications before they go live on the marketplace.</p></div>
+        <div class="feat-box"><div class="feat-icon">🔑</div><h4>Credential Management</h4><p>Create, issue, reset, and revoke store agent credentials — the only way stores gain access.</p></div>
+        <div class="feat-box"><div class="feat-icon">👁️</div><h4>Order Monitoring</h4><p>Full visibility into all orders across the platform — monitor status, SLA breaches and anomalies.</p></div>
+        <div class="feat-box"><div class="feat-icon">⚖️</div><h4>Dispute Resolution</h4><p>Handle escalated customer-store disputes, override decisions and ensure fair outcomes.</p></div>
+        <div class="feat-box"><div class="feat-icon">💵</div><h4>Refund Management</h4><p>Approve, modify, or reject refund requests and ensure timely disbursement to customers.</p></div>
+        <div class="feat-box"><div class="feat-icon">📊</div><h4>Commission Tracking</h4><p>Monitor per-order commissions earned, view GMV summaries and track revenue by store.</p></div>
+        <div class="feat-box"><div class="feat-icon">🛡️</div><h4>Content Moderation</h4><p>Review and moderate product listings, store profiles and user-generated reviews on the platform.</p></div>
+        <div class="feat-box"><div class="feat-icon">🗺️</div><h4>City Configuration</h4><p>Configure city-specific settings, geo-radius bands, delivery rules and platform parameters.</p></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- USER FLOW -->
+<section class="flow-section" id="flow">
+  <div class="flow-inner">
+    <div class="section-label">User Journeys</div>
+    <h2 class="section-title">End-to-end flows<br/>for every role</h2>
+    <p class="section-desc">How each type of user moves through the platform — from their first action to completion.</p>
+
+    <div class="flow-journey">
+
+      <!-- Customer Journey -->
+      <div class="flow-actor">
+        <div class="flow-actor-label">
+          <div class="flow-actor-dot" style="background:var(--accent)"></div>
+          <h3>Customer Order Journey</h3>
+        </div>
+        <div style="overflow-x:auto;padding-bottom:16px">
+          <div style="display:flex;align-items:stretch;gap:8px;width:max-content">
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">01</div>
+              <h4>Sign Up / Login</h4>
+              <p>Enter phone, verify OTP, accept T&amp;C</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">02</div>
+              <h4>Set Location</h4>
+              <p>Auto-detect or enter address manually</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">03</div>
+              <h4>Discover Stores</h4>
+              <p>Browse nearby stores or search products</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">04</div>
+              <h4>Add to Cart</h4>
+              <p>Select items from a single store</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">05</div>
+              <h4>Checkout</h4>
+              <p>Confirm address, choose payment</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">06</div>
+              <h4>Order Placed</h4>
+              <p>Store has 60s to accept or reject</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">07</div>
+              <h4>Track Delivery</h4>
+              <p>Real-time status updates</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--accent)">
+              <div class="flow-step-num">08</div>
+              <h4>Delivered</h4>
+              <p>Rate store, review order</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Store Journey -->
+      <div class="flow-actor">
+        <div class="flow-actor-label">
+          <div class="flow-actor-dot" style="background:var(--purple)"></div>
+          <h3>Store Agent Daily Operations</h3>
+        </div>
+        <div style="overflow-x:auto;padding-bottom:16px">
+          <div style="display:flex;align-items:stretch;gap:8px;width:max-content">
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">01</div>
+              <h4>Login</h4>
+              <p>Use admin-issued credentials</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">02</div>
+              <h4>Setup Catalog</h4>
+              <p>Add products or import CSV</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">03</div>
+              <h4>Receive Order</h4>
+              <p>New order notification arrives</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">04</div>
+              <h4>Accept / Reject</h4>
+              <p>Respond within 60 seconds</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">05</div>
+              <h4>Prepare Order</h4>
+              <p>Pack items, update status</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">06</div>
+              <h4>Self-Deliver</h4>
+              <p>Store handles own delivery</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">07</div>
+              <h4>Mark Delivered</h4>
+              <p>Confirm completion in app</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--purple)">
+              <div class="flow-step-num">08</div>
+              <h4>View Analytics</h4>
+              <p>Check sales and performance</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Admin Journey -->
+      <div class="flow-actor">
+        <div class="flow-actor-label">
+          <div class="flow-actor-dot" style="background:var(--amber)"></div>
+          <h3>Admin Onboarding a New Store</h3>
+        </div>
+        <div style="overflow-x:auto;padding-bottom:16px">
+          <div style="display:flex;align-items:stretch;gap:8px;width:max-content">
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">01</div>
+              <h4>Admin Login</h4>
+              <p>Secure internal portal access</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">02</div>
+              <h4>Add Store</h4>
+              <p>Enter store details and profile</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">03</div>
+              <h4>Generate Credentials</h4>
+              <p>System creates username + password</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">04</div>
+              <h4>Share with Store</h4>
+              <p>Send credentials to store owner</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">05</div>
+              <h4>Review &amp; Approve</h4>
+              <p>Approve store to go live on platform</p>
+            </div>
+            <div style="display:flex;align-items:center;color:var(--ink3);padding:0 2px;font-size:13px">→</div>
+            <div class="flow-step" style="border-top:3px solid var(--amber)">
+              <div class="flow-step-num">06</div>
+              <h4>Store Goes Live</h4>
+              <p>Visible to customers in that area</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- BUSINESS RULES -->
+<section class="section" id="rules">
+  <div class="section-label">Business Rules</div>
+  <h2 class="section-title">How the platform<br/>makes decisions</h2>
+  <p class="section-desc">Core rules that govern platform behavior — from how orders are processed to how stores are discovered.</p>
+
+  <div class="rules-grid">
+    <div class="rule-card">
+      <div class="rule-id">BR-01 · Store Discovery</div>
+      <h4>Geo-radius based ranking</h4>
+      <p>Stores are shown in bands: 0–5 km, 5–10 km, and 10–15 km. Within each band, stores are ranked by rating, review confidence, and reliability score.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-02 · Single Store Cart</div>
+      <h4>One store per order</h4>
+      <p>A customer can only order from one store per checkout. Adding items from a second store prompts the customer to clear their existing cart.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-04 · Dynamic Pricing</div>
+      <h4>Price validated at checkout</h4>
+      <p>Stores can change prices at any time. The system re-validates the current price at the moment of checkout — not when items are added to cart.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-05 · Order Acceptance SLA</div>
+      <h4>60-second store response window</h4>
+      <p>Once an order is placed, the store has 60 seconds to accept or reject it. No response means automatic cancellation — protecting customers from limbo.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-06 · Customer Cancellation</div>
+      <h4>Cancel only in pending window</h4>
+      <p>Customers may cancel their order only during the 60-second pending window. Once the store accepts an order, cancellation is restricted.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-07 · Delivery Ownership</div>
+      <h4>Stores deliver — not the platform</h4>
+      <p>Delivery is entirely the store's responsibility in Phase 1. The platform does not assign or manage delivery partners.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-09 · Returns</div>
+      <h4>Structured return with evidence</h4>
+      <p>Customers submit a return reason and optional photo evidence. The store handles reverse pickup. Refund is initiated only after store approval.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-id">BR-10 · Store Access</div>
+      <h4>No self-registration for stores</h4>
+      <p>Stores cannot register themselves. Only the Admin can create store agent credentials — ensuring full platform control over who participates.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- SCOPE -->
+<section class="section" id="scope">
+  <div class="section-label">Project Scope</div>
+  <h2 class="section-title">Phase 1 boundaries</h2>
+  <p class="section-desc">A focused MVP — built to launch fast, designed to scale into a full super app.</p>
+
+  <div class="scope-grid">
+    <div class="scope-col scope-in">
+      <h3><span>✅</span> In Scope — Phase 1 MVP</h3>
+      <ul class="scope-list">
+        <li>Mobile PWA</li><li>OTP Login</li><li>Location detection</li>
+        <li>Store discovery</li><li>Product search</li><li>Category browsing</li>
+        <li>Cart management</li><li>Checkout</li><li>COD payment</li>
+        <li>Online payment</li><li>Order tracking</li><li>60s cancellation</li>
+        <li>Order history</li><li>Reviews</li><li>Return requests</li>
+        <li>Refund tracking</li><li>Store catalog</li><li>CSV bulk import</li>
+        <li>Inventory management</li><li>Order dashboard</li><li>Delivery management</li>
+        <li>Store analytics</li><li>Admin panel</li><li>Store onboarding</li>
+        <li>Dispute handling</li><li>Commission tracking</li>
+      </ul>
+    </div>
+    <div class="scope-col scope-out">
+      <h3><span>🔜</span> Out of Scope — Future Phases</h3>
+      <ul class="scope-list">
+        <li>In-app Wallet</li><li>Loyalty Rewards</li><li>Coupon System</li>
+        <li>Multi-store Cart</li><li>Live GPS Tracking</li><li>Delivery Marketplace</li>
+        <li>AI Recommendations</li><li>POS Sync</li><li>Warehouse Fulfillment</li>
+        <li>Voice Ordering</li><li>Multilingual Chatbot</li><li>Subscription Plans</li>
+        <li>Bill Payments</li><li>Money Transfers</li><li>Travel Booking</li>
+        <li>Pay Module</li><li>Go Module</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- NFR callouts -->
+  <div style="margin-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;flex-wrap:wrap">
+    <div style="padding:20px;background:var(--surf2);border-radius:var(--r2);border:1px solid var(--border)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px">Performance</div>
+      <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy)">&lt;300ms</div>
+      <div style="font-size:12px;color:var(--ink3)">API response target</div>
+    </div>
+    <div style="padding:20px;background:var(--surf2);border-radius:var(--r2);border:1px solid var(--border)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px">Search</div>
+      <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy)">&lt;500ms</div>
+      <div style="font-size:12px;color:var(--ink3)">Product search latency</div>
+    </div>
+    <div style="padding:20px;background:var(--surf2);border-radius:var(--r2);border:1px solid var(--border)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px">Uptime</div>
+      <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy)">99.5%</div>
+      <div style="font-size:12px;color:var(--ink3)">Target availability</div>
+    </div>
+    <div style="padding:20px;background:var(--surf2);border-radius:var(--r2);border:1px solid var(--border)">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--ink3);margin-bottom:6px">Security</div>
+      <div style="font-size:22px;font-family:'DM Serif Display',serif;color:var(--navy)">JWT</div>
+      <div style="font-size:12px;color:var(--ink3)">+ OTP + rate limiting</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <strong>Daily PayGo — Product Overview Document</strong><br/>
+  Phase 1 MVP · Daily Module · Confidential Client Brief
+</footer>
+
+<script>
+function switchTab(name, el) {
+  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.feature-panels > div').forEach(p => p.classList.remove('active'));
+  el.classList.add('active');
+  document.getElementById('tab-' + name).classList.add('active');
+}
+</script>
+
+</body>
+</html>
